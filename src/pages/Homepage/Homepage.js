@@ -35,8 +35,10 @@ import {
   Typography,
   useMediaQuery,
 } from '@mui/material';
+import emailjs from 'emailjs-com';
 import { motion, useAnimation } from 'framer-motion';
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
+import { toast } from 'react-toastify';
 import { links } from '../../components/data/data';
 import { ThemeContext } from '../../components/theme/ThemeContext';
 
@@ -47,6 +49,59 @@ const HomePage = () => {
   const isMobile = useMediaQuery('(max-width:600px)');
   const projectsRef = useRef(null);
   const contactRef = useRef(null);
+  const [user_email, setUserEmail] = useState('');
+  const [full_name, setFullName] = useState('');
+  const [subject, setSubject] = useState('');
+  const [message, setMessage] = useState('');
+  const [isCopyToUser, setIsCopyToUser] = useState(false);
+
+  const handleSendEmail = () => {
+    if (isCopyToUser) {
+      emailjs
+        .send(
+          'service_ou09yxg',
+          'template_lf8br83',
+          {
+            full_name: full_name,
+            user_email: user_email,
+            subject: subject,
+            message: message,
+          },
+          'JNFr7YxWbSX000cj3'
+        )
+        .then(
+          (result) => {
+            toast.success('Thank you! Your email has been sent.');
+          },
+          (error) => {
+            toast.error('Oops! Failed to send email.');
+            console.error(error);
+          }
+        );
+    } else {
+      emailjs
+        .send(
+          'service_ou09yxg',
+          'template_qvn18jt',
+          {
+            full_name: full_name,
+            user_email: user_email,
+            subject: subject,
+            message: message,
+          },
+          'JNFr7YxWbSX000cj3'
+        )
+        .then(
+          (result) => {
+            toast.success('Thank you! Your email has been sent.');
+          },
+          (error) => {
+            toast.error('Oops! Failed to send email.');
+            console.error(error);
+          }
+        );
+    }
+  };
 
   // Animation to start on page load
   useEffect(() => {
@@ -1259,6 +1314,7 @@ const HomePage = () => {
                           fullWidth
                           label='Full Name'
                           variant='outlined'
+                          onChange={(e) => setFullName(e.target.value)}
                           InputProps={{
                             startAdornment: (
                               <InputAdornment position='start'>
@@ -1304,6 +1360,7 @@ const HomePage = () => {
                         sm={6}>
                         <TextField
                           fullWidth
+                          onChange={(e) => setUserEmail(e.target.value)}
                           label='Email Address'
                           type='email'
                           variant='outlined'
@@ -1351,6 +1408,7 @@ const HomePage = () => {
                         xs={12}>
                         <TextField
                           fullWidth
+                          onChange={(e) => setSubject(e.target.value)}
                           label='Subject'
                           variant='outlined'
                           InputProps={{
@@ -1397,6 +1455,7 @@ const HomePage = () => {
                         xs={12}>
                         <TextField
                           fullWidth
+                          onChange={(e) => setMessage(e.target.value)}
                           label='Your Message'
                           multiline
                           rows={5}
@@ -1456,6 +1515,8 @@ const HomePage = () => {
                           <FormControlLabel
                             control={
                               <Checkbox
+                                onClick={() => setIsCopyToUser(!isCopyToUser)}
+                                checked={isCopyToUser}
                                 sx={{
                                   color: darkMode
                                     ? 'rgba(139, 233, 253, 0.5)'
@@ -1480,6 +1541,7 @@ const HomePage = () => {
                           />
 
                           <Button
+                            onClick={handleSendEmail}
                             variant='contained'
                             color='primary'
                             size='large'

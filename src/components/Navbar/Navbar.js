@@ -5,6 +5,15 @@ import MenuIcon from '@mui/icons-material/Menu';
 import NightlightIcon from '@mui/icons-material/Nightlight';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  TextField,
+} from '@mui/material';
+import emailjs from 'emailjs-com';
+
+import {
   AppBar,
   Badge,
   Box,
@@ -21,6 +30,7 @@ import {
 } from '@mui/material';
 import { useContext, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { links } from '../data/data';
 import { ThemeContext } from '../theme/ThemeContext';
 
@@ -31,6 +41,32 @@ const Navbar = () => {
   const { darkMode, toggleTheme } = useContext(ThemeContext);
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
+  const [emailDialogOpen, setEmailDialogOpen] = useState(false);
+  const [userEmail, setUserEmail] = useState('');
+  const handleHireClick = () => {
+    setEmailDialogOpen(true);
+  };
+
+  const handleSendEmail = () => {
+    emailjs
+      .send(
+        'service_ou09yxg',
+        'template_qvn18jt',
+        { user_email: userEmail },
+        'JNFr7YxWbSX000cj3'
+      )
+      .then(
+        (result) => {
+          toast.success('Thank you! Your email has been sent.');
+          setEmailDialogOpen(false);
+          setUserEmail('');
+        },
+        (error) => {
+          toast.error('Oops! Failed to send email.');
+          console.error(error);
+        }
+      );
+  };
 
   const navItems = [
     // { label: 'Home', path: '/', icon: <HomeIcon /> },
@@ -323,6 +359,7 @@ const Navbar = () => {
             <Button
               variant='contained'
               color='primary'
+              onClick={handleHireClick}
               sx={{
                 ml: 2,
                 px: 2,
@@ -345,6 +382,31 @@ const Navbar = () => {
         onClose={toggleDrawer(false)}>
         {drawer}
       </Drawer>
+      <Dialog
+        open={emailDialogOpen}
+        onClose={() => setEmailDialogOpen(false)}>
+        <DialogTitle>Enter your email</DialogTitle>
+        <DialogContent>
+          <TextField
+            autoFocus
+            margin='dense'
+            label='Your Email'
+            type='email'
+            fullWidth
+            variant='standard'
+            value={userEmail}
+            onChange={(e) => setUserEmail(e.target.value)}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setEmailDialogOpen(false)}>Cancel</Button>
+          <Button
+            onClick={handleSendEmail}
+            disabled={!userEmail}>
+            Send
+          </Button>
+        </DialogActions>
+      </Dialog>
     </AppBar>
   );
 };
