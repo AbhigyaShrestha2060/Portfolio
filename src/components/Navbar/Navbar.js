@@ -1,7 +1,4 @@
-import ArticleIcon from '@mui/icons-material/Article';
-import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
 import CodeIcon from '@mui/icons-material/Code';
-import CodeOutlinedIcon from '@mui/icons-material/CodeOutlined';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
 import DownloadIcon from '@mui/icons-material/Download';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -31,7 +28,7 @@ import {
   useMediaQuery,
   useTheme,
 } from '@mui/material';
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ThemeContext } from '../theme/ThemeContext';
 
@@ -47,9 +44,9 @@ const Navbar = () => {
   const navItems = [
     { label: 'Home', path: '/', icon: <HomeIcon /> },
     { label: 'Projects', path: '/projects', icon: <WorkIcon /> },
-    { label: 'Skills', path: '/skills', icon: <CodeOutlinedIcon /> },
-    { label: 'Experience', path: '/experience', icon: <BusinessCenterIcon /> },
-    { label: 'Blog', path: '/blog', icon: <ArticleIcon />, badge: 3 },
+    // { label: 'Skills', path: '/skills', icon: <CodeOutlinedIcon /> },
+    // { label: 'Experience', path: '/experience', icon: <BusinessCenterIcon /> },
+    // { label: 'Blog', path: '/blog', icon: <ArticleIcon />, badge: 3 },
     { label: 'Contact', path: '/contact', icon: <ContactMailIcon /> },
   ];
 
