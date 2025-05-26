@@ -99,18 +99,20 @@ const HomePage = () => {
   // Project data
   const projects = [
     {
-      title: 'E-Commerce Platform',
+      title: 'Snapnets',
       description:
-        'A full-stack e-commerce solution with payment integration, user authentication, and admin dashboard.',
-      skills: ['React', 'Node.js', 'MongoDB', 'Express', 'Redux'],
+        'A full-stack social media with image bidding platform with payment integration and user authentication.',
+      skills: ['React', 'Node.js', 'MongoDB', 'Express', 'Khalti'],
       icon: <WebIcon fontSize='large' />,
+      link: 'https://github.com/AbhigyaShrestha2060/Snapnets-Frontend',
     },
     {
-      title: 'Task Management System',
+      title: 'Home Bike Service',
       description:
-        'A collaborative project management tool with real-time updates and team collaboration features.',
-      skills: ['Angular', 'Firebase', 'TypeScript', 'Material UI'],
+        'A full-stack web application for booking home bike services with user authentication, admin dashboard and mechanic dashbaord.',
+      skills: ['React', 'Flutter', 'Express', 'Khalti', 'MongoDB', 'Node.js'],
       icon: <StorageIcon fontSize='large' />,
+      link: 'https://github.com/AbhigyaShrestha2060/HomeBikeServiceAPI',
     },
     {
       title: 'Portfolio Website',
@@ -120,6 +122,10 @@ const HomePage = () => {
       icon: <CodeIcon fontSize='large' />,
     },
   ];
+
+  const openProjectLink = (link) => {
+    window.open(link, '_blank');
+  };
 
   return (
     <Box
@@ -891,6 +897,7 @@ const HomePage = () => {
                             color='primary'
                             size='medium'
                             endIcon={<ArrowForwardIcon />}
+                            onClick={() => openProjectLink(project.link)}
                             sx={{
                               textTransform: 'none',
                               fontWeight: 600,
