@@ -1,13 +1,9 @@
 import CodeIcon from '@mui/icons-material/Code';
-import ContactMailIcon from '@mui/icons-material/ContactMail';
-import DownloadIcon from '@mui/icons-material/Download';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import HomeIcon from '@mui/icons-material/Home';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import MenuIcon from '@mui/icons-material/Menu';
 import NightlightIcon from '@mui/icons-material/Nightlight';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
-import WorkIcon from '@mui/icons-material/Work';
 import {
   AppBar,
   Badge,
@@ -16,11 +12,6 @@ import {
   Container,
   Drawer,
   IconButton,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
   Toolbar,
   Tooltip,
   Typography,
@@ -30,6 +21,7 @@ import {
 } from '@mui/material';
 import { useContext, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { links } from '../data/data';
 import { ThemeContext } from '../theme/ThemeContext';
 
 const Navbar = () => {
@@ -40,14 +32,13 @@ const Navbar = () => {
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
 
-  // Navigation items with paths, icons and labels
   const navItems = [
-    { label: 'Home', path: '/', icon: <HomeIcon /> },
-    { label: 'Projects', path: '/projects', icon: <WorkIcon /> },
+    // { label: 'Home', path: '/', icon: <HomeIcon /> },
+    // { label: 'Projects', path: '/projects', icon: <WorkIcon /> },
     // { label: 'Skills', path: '/skills', icon: <CodeOutlinedIcon /> },
     // { label: 'Experience', path: '/experience', icon: <BusinessCenterIcon /> },
     // { label: 'Blog', path: '/blog', icon: <ArticleIcon />, badge: 3 },
-    { label: 'Contact', path: '/contact', icon: <ContactMailIcon /> },
+    // { label: 'Contact', path: '/contact', icon: <ContactMailIcon /> },
   ];
 
   // Handle scroll effect for navbar
@@ -105,7 +96,7 @@ const Navbar = () => {
           <CodeIcon sx={{ mr: 1 }} /> Abhigya Shrestha
         </Typography>
       </Box>
-      <List sx={{ flexGrow: 1 }}>
+      {/* <List sx={{ flexGrow: 1 }}>
         {navItems.map((item) => {
           const active = isActive(item.path);
           return (
@@ -156,7 +147,7 @@ const Navbar = () => {
             </ListItem>
           );
         })}
-      </List>
+      </List> */}
 
       <Box
         sx={{
@@ -165,21 +156,18 @@ const Navbar = () => {
           flexDirection: 'column',
           borderTop: `1px solid ${theme.palette.divider}`,
         }}>
-        <Button
-          variant='contained'
-          startIcon={<DownloadIcon />}
-          fullWidth
-          sx={{ mb: 2 }}>
-          Download CV
-        </Button>
         <Box sx={{ display: 'flex', justifyContent: 'center', mt: 1 }}>
           <Tooltip title='GitHub'>
-            <IconButton sx={{ mx: 1 }}>
+            <IconButton
+              sx={{ mx: 1 }}
+              onClick={() => window.open(links.github, '_blank')}>
               <GitHubIcon />
             </IconButton>
           </Tooltip>
           <Tooltip title='LinkedIn'>
-            <IconButton sx={{ mx: 1 }}>
+            <IconButton
+              sx={{ mx: 1 }}
+              onClick={() => window.open(links.linkedin, '_blank')}>
               <LinkedInIcon />
             </IconButton>
           </Tooltip>
@@ -309,14 +297,16 @@ const Navbar = () => {
                 <Tooltip title='GitHub'>
                   <IconButton
                     color='inherit'
-                    sx={{ ml: 1 }}>
+                    sx={{ ml: 1 }}
+                    onClick={() => window.open(links.github, '_blank')}>
                     <GitHubIcon />
                   </IconButton>
                 </Tooltip>
                 <Tooltip title='LinkedIn'>
                   <IconButton
                     color='inherit'
-                    sx={{ ml: 1 }}>
+                    sx={{ ml: 1 }}
+                    onClick={() => window.open(links.linkedin, '_blank')}>
                     <LinkedInIcon />
                   </IconButton>
                 </Tooltip>

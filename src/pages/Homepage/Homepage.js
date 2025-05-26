@@ -37,6 +37,7 @@ import {
 } from '@mui/material';
 import { motion, useAnimation } from 'framer-motion';
 import React, { useContext, useEffect, useRef } from 'react';
+import { links } from '../../components/data/data';
 import { ThemeContext } from '../../components/theme/ThemeContext';
 
 // Main component for the homepage
@@ -277,7 +278,8 @@ const HomePage = () => {
                       '&:hover': {
                         transform: 'translateY(-5px)',
                       },
-                    }}>
+                    }}
+                    onClick={() => window.open(links.github, '_blank')}>
                     <GitHubIcon />
                   </IconButton>
                   <IconButton
@@ -288,7 +290,8 @@ const HomePage = () => {
                       '&:hover': {
                         transform: 'translateY(-5px)',
                       },
-                    }}>
+                    }}
+                    onClick={() => window.open(links.linkedin, '_blank')}>
                     <LinkedInIcon />
                   </IconButton>
                   <IconButton
@@ -299,7 +302,8 @@ const HomePage = () => {
                       '&:hover': {
                         transform: 'translateY(-5px)',
                       },
-                    }}>
+                    }}
+                    onClick={() => window.open(links.gmail, '_blank')}>
                     <EmailIcon />
                   </IconButton>
                 </Box>
@@ -945,6 +949,12 @@ const HomePage = () => {
                 variant='contained'
                 color='secondary'
                 size='large'
+                onClick={() =>
+                  window.open(
+                    'https://github.com/AbhigyaShrestha2060?tab=repositories',
+                    '_blank'
+                  )
+                }
                 endIcon={<CollectionsIcon />}
                 sx={{
                   px: 4,
@@ -1530,26 +1540,6 @@ const HomePage = () => {
                             : 'rgba(2, 119, 189, 0.1)'
                         }`,
                       }}>
-                      <Tooltip title='Call Me'>
-                        <IconButton
-                          sx={{
-                            mx: 1.5,
-                            color: darkMode ? '#bd93f9' : '#6a1b9a',
-                            background: darkMode
-                              ? 'rgba(189, 147, 249, 0.1)'
-                              : 'rgba(106, 27, 154, 0.05)',
-                            transition: 'all 0.3s',
-                            '&:hover': {
-                              transform: 'translateY(-4px)',
-                              background: darkMode
-                                ? 'rgba(189, 147, 249, 0.2)'
-                                : 'rgba(106, 27, 154, 0.1)',
-                            },
-                          }}>
-                          <PhoneIcon />
-                        </IconButton>
-                      </Tooltip>
-
                       <Tooltip title='Email Me'>
                         <IconButton
                           sx={{
@@ -1565,7 +1555,8 @@ const HomePage = () => {
                                 ? 'rgba(139, 233, 253, 0.2)'
                                 : 'rgba(2, 119, 189, 0.1)',
                             },
-                          }}>
+                          }}
+                          onClick={() => window.open(links.gmail, '_blank')}>
                           <EmailIcon />
                         </IconButton>
                       </Tooltip>
@@ -1585,7 +1576,8 @@ const HomePage = () => {
                                 ? 'rgba(255, 121, 198, 0.2)'
                                 : 'rgba(194, 24, 91, 0.1)',
                             },
-                          }}>
+                          }}
+                          onClick={() => window.open(links.linkedin, '_blank')}>
                           <LinkedInIcon />
                         </IconButton>
                       </Tooltip>
@@ -1605,7 +1597,8 @@ const HomePage = () => {
                                 ? 'rgba(80, 250, 123, 0.2)'
                                 : 'rgba(46, 125, 50, 0.1)',
                             },
-                          }}>
+                          }}
+                          onClick={() => window.open(links.github, '_blank')}>
                           <GitHubIcon />
                         </IconButton>
                       </Tooltip>

@@ -2,7 +2,7 @@ import {
   createTheme,
   ThemeProvider as MUIThemeProvider,
 } from '@mui/material/styles';
-import React, { createContext, useMemo, useState } from 'react';
+import { createContext, useMemo, useState } from 'react';
 
 // Define the dark coder theme colors
 const darkCodeTheme = {
