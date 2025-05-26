@@ -13,7 +13,7 @@ function App() {
         <ToastContainer />
         <Routes>
           <Route
-            path='/'
+            path='/Portfolio'
             Component={Homepage}
           />
         </Routes>
